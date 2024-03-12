@@ -5,8 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 
-import Home from './screens/Home'
-import Splash from './screens/Splash'
+import Home from './screens/Home';
+import Splash from './screens/Splash';
+import Tutorial from './screens/Tutorial';
 import Select from './screens/Select';
 import EditDeck from './screens/EditDeck';
 import EditCard from './screens/EditCard';
@@ -17,6 +18,7 @@ const Drawer=createDrawerNavigator();
 const DrawerNav=()=>{
   return(
       <Drawer.Navigator>
+        <Drawer.Screen name="Tutorial" component={Tutorial} options={{headerShown: false}}/>
         <Drawer.Screen name="Home" component={Home} options={{headerShown:false}}/>
         <Drawer.Screen name="Select" component={Select}/>
         <Drawer.Screen name="EditDeck" component={EditDeck}/>
