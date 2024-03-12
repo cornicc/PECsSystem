@@ -9,21 +9,44 @@ export default function Home({navigation}) {
       <Text>{item.category}</Text>
     </View>
   );
-
+//style={styles.selectedcards}//
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text>DECKS || ALL</Text>
-        <TouchableOpacity onPress={()=>{navigation.openDrawer()}}>
-          <Text>: SIDE MENUEEEE</Text>
+        <TouchableOpacity onPress={()=>{navigation.openDrawer()}} style={styles.menu}>
+          <Text>Menu</Text>
+        </TouchableOpacity>
+        
+
+
+      <View style={{flexDirection:'row', marginTop: 50,}}> 
+          <View style={styles.selectcontainer} />
+          <View style={styles.selectcontainer} />
+          <View style={styles.selectcontainer} />
+      </View>
+
+      <View style={{width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop:15}}>
+        <TouchableOpacity style={styles.trashbtn}>
+          <Text>T</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.playbtn}>
+          <Text>Play</Text>
         </TouchableOpacity>
       </View>
+
+      </View>
       
-      <FlatList
-        horizontal={true}
-        data={CardList}
-        renderItem={renderItem}
-      />
+
+
+      <View style={styles.optioncontainer}>
+        <FlatList
+          horizontal={true}
+          data={CardList}
+          renderItem={renderItem}
+        />
+      </View>
 
       <View style={styles.maincontent}>
        
@@ -39,15 +62,53 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header:{
-    height:'40px',
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#5B5F97',
-    padding:10,
+    width: '100%',
+    height: '40%',
+    marginTop: '7%',
+    backgroundColor: 'gray',
+    alignItems: 'center'
+  },
+  optioncontainer:{
+    backgroundColor: 'red'
+  },
+  selectcontainer:{
+    borderWidth: 1,
+    width:100,
+    height:125,
+    margin: 5,
+    borderRadius: 12,
+    backgroundColor: 'white'
   },
   card:{
-    height:100,
-    width:70,
+    height:120,
+    width:100,
+    margin: 5,
     backgroundColor:'#fff',
+    borderWidth: 1,
+    borderRadius: 12,
+  },
+  menu: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    height: 50,
+    width: 50,
+    backgroundColor: 'lightgray',
+    position: 'absolute',
+    right: 10,
+    alignSelf: 'flex-start'
+  },
+  trashbtn:{
+   justifyContent: 'center',
+   alignItems: 'center',
+   width: 60,
+   height: 60,
+   backgroundColor: 'lightgray'
+  },
+  playbtn: {
+    backgroundColor: 'lightblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 200,
+    height: 60,
   }
 });

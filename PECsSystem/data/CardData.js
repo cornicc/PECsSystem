@@ -6,5 +6,9 @@ export var CardList=[
     {
         name:'Yes',
         category:'Want'
+    },
+    {
+        name: 'DickinBaus',
+        category:'Genitalia'
     }
 ]
