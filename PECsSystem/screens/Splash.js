@@ -11,7 +11,7 @@ export default function Splash({navigation}){
             WELCOME
           </Text>
           <TouchableOpacity onPress={()=>{navigation.navigate("Drawer")}} style={styles.btn}>
-            <Text style={styles.t3}>GET RETARDED</Text>
+            <Text style={styles.t3}>GET STARTED</Text>
           </TouchableOpacity>
         </View>
       );

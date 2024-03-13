@@ -15,7 +15,7 @@ export default function Home({navigation}) {
       <View style={styles.header}>
         <Text>DECKS || ALL</Text>
         <TouchableOpacity onPress={()=>{navigation.openDrawer()}} style={styles.menu}>
-          <Text>Menu</Text>
+          <Text style={{alignSelf: 'center'}}>Menu</Text>
         </TouchableOpacity>
         
 
@@ -26,6 +26,7 @@ export default function Home({navigation}) {
           <View style={styles.selectcontainer} />
       </View>
 
+
       <View style={{width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop:15}}>
         <TouchableOpacity style={styles.trashbtn}>
           <Text>T</Text>
@@ -35,22 +36,20 @@ export default function Home({navigation}) {
           <Text>Play</Text>
         </TouchableOpacity>
       </View>
-
       </View>
       
 
-
-      <View style={styles.optioncontainer}>
-        <FlatList
-          horizontal={true}
-          data={CardList}
-          renderItem={renderItem}
-        />
-      </View>
-
-      <View style={styles.maincontent}>
+        <View style={styles.optioncontainer}>
+          <FlatList
+            bounces={false}
+            horizontal={false}
+            data={CardList}
+            renderItem={renderItem}
+            numColumns={3}
+          />
+        </View>
        
-      </View>
+      
     </View>
   );
 }
@@ -58,8 +57,9 @@ export default function Home({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'gray',
     alignItems: 'center',
+
   },
   header:{
     width: '100%',
@@ -69,7 +69,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   optioncontainer:{
-    backgroundColor: 'red'
+    backgroundColor: 'white',
+    width: '100%',
+    height: '60%',
+    alignItems: 'center',
+    borderRadius: 16,
   },
   selectcontainer:{
     borderWidth: 1,
@@ -80,12 +84,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   card:{
-    height:120,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    height:125,
     width:100,
     margin: 5,
     backgroundColor:'#fff',
     borderWidth: 1,
     borderRadius: 12,
+    padding: 5,
   },
   menu: {
     justifyContent: 'center',
@@ -102,6 +109,7 @@ const styles = StyleSheet.create({
    alignItems: 'center',
    width: 60,
    height: 60,
+   marginEnd: 10,
    backgroundColor: 'lightgray'
   },
   playbtn: {
