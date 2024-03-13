@@ -28,6 +28,6 @@ export default[
         title: "STEP 5",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         image: require('../assets/Rectangle 1.png')
-    }
+    },
 
 ]
