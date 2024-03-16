@@ -1,62 +1,649 @@
 export var CardList=[
     {
-        name:'I want',
-        category:'Want'
+        name:'Want',
+        content:  
+        [ 
+            {
+                name:'I want',
+            },
+            {
+                name:'Yes',
+            },
+            {
+                name:'No',
+            },
+            {
+                name:"I don't Want",
+            },
+            {
+                name:'Stop',
+            },
+            {
+                name:'End',
+            },
+            {
+                name:'I want to go',
+            },
+            {
+                name:'Hug',
+            }
+        ]
     },
     {
-        name:'Yes',
-        category:'Want'
+        name: 'Tools',
+        content: 
+        [
+            {
+                name:'Picture Books',
+            },
+            {
+                name:'Ball',
+            },
+            {
+                name:'Doll',
+            },
+            {
+                name:'Blocks',
+            },
+            {
+                name:'Coloring',
+            },
+            {
+                name:'Clay',
+            },
+            {
+                name:'Balloon',
+            },
+            {
+                name:'Bubbles',
+            },
+            {
+                name:'Toy Car',
+            },
+            {
+                name:'TV',
+            },
+            {
+                name:'Puzzles',
+            },
+            {
+                name:'Video Game',
+            },
+            {
+                name:'Board Game',
+            },
+            {
+                name:'DVD',
+            },
+            {
+                name:'Computer',
+            },
+            {
+                name:'Tablet',
+            },
+            {
+                name:'Trampoline',
+            },
+            {
+                name:'Crayons',
+            },
+            {
+                name:'Colored Pencil',
+            },
+            {
+                name:'Pencil',
+            },
+            {
+                name:'Notebook',
+            },
+            {
+                name:'Scissors',
+            },
+            {
+                name:'Glue',
+                category:'Tools'
+            },
+            {
+                name:'Chair',
+            },
+            {
+                name:'Spoon',
+            },
+            {
+                name:'Fork',
+            },
+            {
+                name:'Knife',
+            },
+            {
+                name:'Chopsticks',
+            },
+            {
+                name:'Cup',
+            },
+            {
+                name:'Plate',
+            },
+            {
+                name:'Glasses',
+            },
+            {
+                name:'Teddy Bear',
+            },
+        ]
     },
     {
-        name: 'DickinBaus',
-        category:'Genitalia'
+        name:'Food',
+        content:[
+            {
+                name:'Water',
+            },
+            {
+                name:'Milk',
+            },
+            {
+                name:'Juice',
+            },
+            {
+                name:'Tea',
+            },
+            {
+                name:'Rice',
+            },
+            {
+                name:'Bread',
+            },
+            {
+                name:'Snacks',
+            },
+            {
+                name:'Bananas',
+            },
+            {
+                name:'Candy',
+            },
+            {
+                name:'Chocolate',
+            },
+            {
+                name:'Cookies',
+            },
+            {
+                name:'Gum',
+            },
+            {
+                name:'Yogurt',
+            },
+            {
+                name:'Ice Cream',
+            },
+            {
+                name:'Cake',
+            },
+            {
+                name:'Soup',
+            },
+            {
+                name:'Sandwich',
+            },
+            {
+                name:'Hamburger',
+            },
+            {
+                name:'Steak',
+            },
+            {
+                name:'Ramen',
+            },
+            {
+                name:'Pizza',
+            },
+            {
+                name:'Spaghetti',
+            },
+            {
+                name:'Box Lunch',
+            },
+            {
+                name:'Water Bottle',
+            },
+        ]
     },
     {
-        name:'I want',
-        category:'Want'
+        name: 'People',
+        content: [
+            {
+                name:'Me'
+            },  {
+                name:'Mom'
+            },
+            {
+                name:'Dad'
+            },
+            {
+                name:'Everyone'
+            },
+            {
+                name:'Older Brother'
+            },
+            {
+                name:'Older Sister'
+            },
+            {
+                name:'Younger Brother'
+            },
+            {
+                name:'Younger Sister'
+            },
+            {
+                name:'Baby'
+            },
+            {
+                name:'Boy'
+            },
+            {
+                name:'Girl'
+            }
+        ]
     },
     {
-        name:'Yes',
-        category:'Want'
+        name: 'Animals',
+        content:[
+            {
+                name:'Dog'
+            },
+            {
+                name:'Cat'
+            },
+            {
+                name:'Bird'
+            },
+            {
+                name:'Fish'
+            },
+            {
+                name:'Insects'
+            },
+        ]
     },
     {
-        name: 'DickinBaus',
-        category:'Genitalia'
+        name:'Body',
+        content:[
+            {
+                name:'Face'
+            },
+            {
+                name:'Eye'
+            },
+            {
+                name:'Nose'
+            },
+            {
+                name:'Mouth'
+            },
+            {
+                name:'Ear'
+            },
+            {
+                name:'Hand'
+            },
+            {
+                name:'Head'
+            },
+            {
+                name:'Stomach'
+            },
+            {
+                name:'Back'
+            },
+            {
+                name:'Bottom Foot'
+            },
+            {
+                name:'Fingers'
+            },
+            {
+                name:'Arm Knee'
+            },
+            {
+                name:'Hair'
+            },
+            {
+                name:'Teeth'
+            },
+            {
+                name:'Tongue'
+            },
+            {
+                name:'Throat'
+            },
+        ]
     },
     {
-        name:'I want',
-        category:'Want'
+        name:'Clothes',
+        content: [
+            {
+                name:'T-Shirt'
+            },
+            {
+                name:'Shirt'
+            },
+            {
+                name:'Pants'
+            },
+            {
+                name:'Skirt'
+            },
+            {
+                name:'Underwear'
+            },
+            {
+                name:'Diaper'
+            },
+            {
+                name:'Jacket'
+            },
+            {
+                name:'Shoes'
+            },
+            {
+                name:'Socks'
+            },
+            {
+                name:'Hat'
+            },
+            {
+                name:'Backpack'
+            },
+            {
+                name:'Scarf'
+            },
+            {
+                name:'Pajamas'
+            },
+            {
+                name:'Indoor Shoes'
+            },
+            {
+                name:'Swimsuit'
+            },
+        ]
     },
     {
-        name:'Yes',
-        category:'Want'
+        name: 'Vehicles',
+        content:[
+            {
+                name:'Car'
+            },
+            {
+                name:'Bus'
+            },
+            {
+                name:'Electric Train'
+            },
+            {
+                name:'Bicyle'
+            },
+            {
+                name:'Boat'
+            },
+            {
+                name:'Bullet Train'
+            },
+            {
+                name:'Evevator'
+            },
+            {
+                name:'Airplane'
+            },
+        ]
     },
     {
-        name: 'DickinBaus',
-        category:'Genitalia'
+        name:'Places',
+        content:[
+            {
+                name:'House'
+            },
+            {
+                name:'Toilet'
+            },
+            {
+                name:'Bath'
+            },
+            {
+                name:'Living Room'
+            },
+            {
+                name:'Kitchen'
+            },
+            {
+                name:'Bedroom'
+            },
+            {
+                name:'Park'
+            },
+            {
+                name:'School'
+            },
+            {
+                name:'Supermarket'
+            },
+            {
+                name:'Hospital'
+            },
+            {
+                name:'Station'
+            },
+            {
+                name:'Bus Stop'
+            },
+            {
+                name:'Zoo'
+            },
+            {
+                name:'Aquarium'
+            },
+            {
+                name:'Crosswalk'
+            },
+        ]
     },
     {
-        name:'I want',
-        category:'Want'
+        name:'Time',
+        content:[
+            {
+                name:'Morning'
+            },
+            {
+                name:'Daytime'
+            },
+            {
+                name:'Night'
+            },
+            {
+                name:'Today'
+            },
+            {
+                name:'Yesterday'
+            },
+            {
+                name:'Tomorrow'
+            },
+        ]
     },
     {
-        name:'Yes',
-        category:'Want'
+        name: 'Feelings',
+        content:[
+            {
+                name:'Like'
+            },
+            {
+                name:'Hate'
+            },
+            {
+                name:"I don't understand"
+            },
+            {
+                name:'Happy'
+            },
+            {
+                name:'Sad'
+            },
+            {
+                name:'Excited'
+            },
+            {
+                name:'Bored'
+            },
+            {
+                name:'Yummy'
+            },
+            {
+                name:'Yucky'
+            },
+            {
+                name:'Frustrated'
+            },
+            {
+                name:'Embarrassed'
+            },
+        ]
     },
     {
-        name: 'DickinBaus',
-        category:'Genitalia'
+        name: 'Actions',
+        content:[
+            {
+                name:'Drink'
+            },
+            {
+                name:'Eat'
+            },
+            {
+                name:'Look'
+            },
+            {
+                name:'Speak'
+            },
+            {
+                name:'Go'
+            },
+            {
+                name:'Take off'
+            },
+            {
+                name:'Wear'
+            },
+            {
+                name:'Wash'
+            },
+            {
+                name:'Brush Teeth'
+            },
+            {
+                name:'Open'
+            },
+            {
+                name:'Close'
+            },
+            {
+                name:'Get up'
+            },
+            {
+                name:'Sleep'
+            },
+            {
+                name:'Sit'
+            },
+            {
+                name:'Stand'
+            },
+            {
+                name:'Walk'
+            },
+            {
+                name:'Run'
+            },
+            {
+                name:'Stop'
+            },
+        ]
     },
     {
-        name:'I want',
-        category:'Want'
+        name:'Relations',
+        content:[
+            {
+                name:'Large'
+            },
+            {
+                name:'Small'
+            },
+            {
+                name:'Many'
+            },
+            {
+                name:'Few'
+            },
+            {
+                name:'High'
+            },
+            {
+                name:'Low'
+            },
+            {
+                name:'Long'
+            },
+            {
+                name:'Short'
+            },
+            {
+                name:'Heavy'
+            },
+            {
+                name:'Light'
+            },
+            {
+                name:'Ahead'
+            },
+            {
+                name:'Behind'
+            },
+            {
+                name:'Over'
+            },
+            {
+                name:'Under'
+            },
+        ]
     },
     {
-        name:'Yes',
-        category:'Want'
-    },
-    {
-        name: 'DickinBaus',
-        category:'Genitalia'
-    },
+        name:'Questions',
+        content:[
+            {
+                name:'Why?'
+            },
+            {
+                name:'What?'
+            },
+            {
+                name:'Who?'
+            },
+            {
+                name:'Where?'
+            },
+            {
+                name:'When?'
+            },
+            {
+                name:'Which One?'
+            },
+            {
+                name:'How Much?'
+            },
+            {
+                name:'What Time?'
+            },
+        ]
+    }
 ]
+
+var OwnDeck

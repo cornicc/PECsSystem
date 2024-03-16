@@ -43,7 +43,7 @@ export default function Home({navigation}) {
           <FlatList
             bounces={false}
             horizontal={false}
-            data={CardList}
+            data={CardList[0].content}
             renderItem={renderItem}
             numColumns={3}
           />

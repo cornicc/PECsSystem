@@ -18,7 +18,7 @@ const Drawer=createDrawerNavigator();
 const DrawerNav=()=>{
   return(
       <Drawer.Navigator>
-        <Drawer.Screen name="Tutorial" component={Tutorial} options={{headerShown: false}}/>
+        <Drawer.Screen name="Tutorial" component={Tutorial} options={{headerShown: true}}/>
         <Drawer.Screen name="Home" component={Home} options={{headerShown:false}}/>
         <Drawer.Screen name="Select" component={Select}/>
         <Drawer.Screen name="EditDeck" component={EditDeck}/>
