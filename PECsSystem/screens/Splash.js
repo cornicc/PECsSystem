@@ -1,7 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View ,TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Splash({navigation}){
+    const [skip,setskip]=useState();
+
+    const storeData = async(value) => {
+      try {
+        alert('d');
+        await AsyncStorage.setItem('skipTutorial',JSON.stringify(false))
+        if(skip){
+          navigation.navigate('Drawer',{screen:'Home'})
+        }
+        else{
+          navigation.navigate('Drawer')
+        }
+      } catch (e) {
+        alert(e);
+      }
+    }
+
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('skipTutorial');
+        const truevalue = JSON.parse(value)
+        if (value !== null) {
+          alert(truevalue);
+          setskip(truevalue)
+        }
+      } catch (e) {
+        alert(e)
+      }
+    };
+
+    useEffect(()=>{
+      getData();
+    },[])
+    
     return (
         <View style={styles.container}>
           <View style={styles.logo_container}>
@@ -10,8 +46,8 @@ export default function Splash({navigation}){
           <Text style={styles.t2}>
             WELCOME
           </Text>
-          <TouchableOpacity onPress={()=>{navigation.navigate("Drawer")}} style={styles.btn}>
-            <Text style={styles.t3}>GET STARTED</Text>
+          <TouchableOpacity onPress={()=>{storeData(true)}} style={styles.btn}>
+            <Text style={styles.t3}>Get Started</Text>
           </TouchableOpacity>
         </View>
       );
