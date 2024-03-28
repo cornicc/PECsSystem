@@ -9,6 +9,11 @@ export default function Home({navigation}) {
       <Text>{item.category}</Text>
     </View>
   );
+  const rendercategory =({item})=>(
+    <TouchableOpacity style={styles.categorybtn}>
+      <Text>{item.name}</Text>
+    </TouchableOpacity>
+  );
 //style={styles.selectedcards}//
   return (
     <View style={styles.container}>
@@ -40,6 +45,20 @@ export default function Home({navigation}) {
       
 
         <View style={styles.optioncontainer}>
+          <View style={styles.categorycontainer}>
+              <FlatList
+                bounces={false}
+                horizontal={true}
+                data={CardList}
+                renderItem={rendercategory}
+                style={styles.categoryBTNcontainer}
+              />
+            <TouchableOpacity style={styles.searchbtn}>
+                <Text>
+                  Search
+                </Text>
+            </TouchableOpacity>
+          </View>
           <FlatList
             bounces={false}
             horizontal={false}
@@ -118,5 +137,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 200,
     height: 60,
+  },
+  categorycontainer:{
+    width: '100%',
+    marginTop: 20,
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+  },
+  categorybtn:{
+    height: 50,
+    width: 50,
+    marginLeft: 20,
+    backgroundColor: 'lightgray',
+    alignSelf: 'center',
+    borderRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  categoryBTNcontainer:{
+    backgroundColor: 'blue',
+    width: '80%',
+    left: 0,
+    position: 'absolute',
+    height: '100%'
+  },
+  searchbtn:{
+    backgroundColor: 'red',
+    width: '20%',
+    right:0,
+    position: 'absolute',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent:'center'
   }
 });
