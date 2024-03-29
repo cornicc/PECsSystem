@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View , FlatList, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View , FlatList, TouchableWithoutFeedback, TouchableOpacity, Modal, SafeAreaView, Button, TextInput} from 'react-native';
 import { CardList } from '../data/CardData';
+import { useState } from 'react';
+
 
 export default function Home({navigation}) {
   const renderItem =({item})=>(
@@ -14,6 +16,9 @@ export default function Home({navigation}) {
       <Text>{item.name}</Text>
     </TouchableOpacity>
   );
+  
+  const [searchInputVisible, setSearchInputVisible] = useState(false);
+
 //style={styles.selectedcards}//
   return (
     <View style={styles.container}>
@@ -53,11 +58,23 @@ export default function Home({navigation}) {
                 renderItem={rendercategory}
                 style={styles.categoryBTNcontainer}
               />
-            <TouchableOpacity style={styles.searchbtn}>
+              <TouchableOpacity style={styles.searchbtn} onPress={() => setSearchInputVisible(!searchInputVisible)}>
                 <Text>
                   Search
                 </Text>
-            </TouchableOpacity>
+              </TouchableOpacity>
+              {searchInputVisible &&(
+                <>
+                <TextInput placeholder="Search" style={styles.searchinput}/>
+                <View style={styles.searchcancelbtnbackground} >
+                  <TouchableOpacity style={styles.searchcancelbtn} onPress={()=>setSearchInputVisible(false)}>
+                    <Text>
+                      X
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                </>
+              )}
           </View>
           <FlatList
             bounces={false}
@@ -171,5 +188,31 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent:'center'
+  },
+  searchinput: {
+    height: '100%',
+    width: '80%',
+    left: 0,
+    position: 'absolute',
+    backgroundColor: 'white',
+    paddingLeft: 15,
+  },
+  searchcancelbtnbackground:{
+    right:0,
+    position: 'absolute',
+    backgroundColor: 'white',
+    height: '100%',
+    width: '20%',
+    alignItems: 'center',
+    justifyContent: 'center'
+
+  },
+  searchcancelbtn:{
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+    backgroundColor: 'gray',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
