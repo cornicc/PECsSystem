@@ -11,6 +11,7 @@ import Tutorial from './screens/Tutorial';
 import Select from './screens/Select';
 import EditDeck from './screens/EditDeck';
 import EditCard from './screens/EditCard';
+import AddVoice from './screens/AddVoice';
 
 const Stack=createStackNavigator();
 const Drawer=createDrawerNavigator();
@@ -23,6 +24,7 @@ const DrawerNav=()=>{
         <Drawer.Screen name="Select" component={Select}/>
         <Drawer.Screen name="EditDeck" component={EditDeck}/>
         <Drawer.Screen name="EditCard" component={EditCard}/>
+        <Drawer.Screen name="AddVoice" component={AddVoice}/>
       </Drawer.Navigator>
   )
 }
