@@ -1,13 +1,53 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Dimensions, TextInput} from 'react-native';
+import * as Progress from 'react-native-progress';
+import {  StyleSheet, Text, View, TouchableOpacity, FlatList, Dimensions, TextInput} from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
-export default function Create() {
+export default function AddVoice() {
   const [text, setText] = useState('');
+  const [progress, setProgress] = useState(1.0);
+  const [timer, setTimer] = useState(null);
+  const [isRecording, setIsRecording] =useState(false)
+  const [isReadyToPlay, setIsReadyToPlay] = useState(false);
+
+  const startRecording = () => {
+    setIsRecording(true);
+    setIsReadyToPlay(false);
+    setProgress(1.0);
+    const newTimer = setInterval(() => {
+        setProgress((prevProgress) => {
+            if (prevProgress <= 0.0) {
+            clearInterval(newTimer);
+            return 1.0;
+
+            }
+            return prevProgress - 0.00238;
+        });
+    }, 16.67);
+    setTimer(newTimer);
+  };
+
+  // Function to handle the "Record" button press
+  const stopRecording = () => {
+    if (timer) {
+        clearInterval(timer);
+        setTimer(null);
+        setIsRecording(false);
+        setIsReadyToPlay(true);
+        setProgress(1); // Clear the progress
+    }
+  };
+
+  const startPlaying = () => {
+    setIsReadyToPlay(false);
+    // Add your logic to start playing the recording
+  };
+
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -37,20 +77,19 @@ export default function Create() {
         </View>
 
         <View style={styles.btncontainer}>
-        <TouchableOpacity style={styles.addbtns}>
-          <Text>
-            ADD VOICE
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.addbtns}>
-          <Text>
-            ADD SECOND IMAGE
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.addbtns}>
-          <Text>
-            SAVE
-          </Text>
+        {/* Progress bar */}
+        {isRecording && (
+            <Progress.Bar
+            progress={progress}
+            height={20}
+            width={windowWidth * 0.70}
+            marginBottom={20}
+            borderRadius={20}
+            />
+        )}
+        {/* Record button */}
+        <TouchableOpacity style={styles.addbtns} onPress={isReadyToPlay ? startPlaying : isRecording ? stopRecording : startRecording}>
+            <Text>{isReadyToPlay ? 'Play' : isRecording ? 'Stop' : 'Record'}</Text>
         </TouchableOpacity>
         </View>
 
@@ -121,10 +160,10 @@ const styles = StyleSheet.create({
   addbtns:{
     backgroundColor: 'lightblue',
     marginBottom: 10,
-    height: 50,
-    width: '100%',
+    height: 100,
+    width: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: 50,
   },
 });
