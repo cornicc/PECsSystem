@@ -1,36 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
+import { CardList } from '../data/CardData';
 
-const dummydata = [
-  {
-    id: '1',
-    title: 'Favorites'
-  },
-  {
-    id: '2',
-    title: 'Foods'
-  },
-  {
-    id: '3',
-    title: 'Family'
-  },
-  {
-    id: '4',
-    title: 'Cars'
-  },
-  {
-    id: '5',
-    title: 'Animals'
-  },
-];
-
-const Item = ({title}) => (
+const Selectables = ({item}) => (
   <TouchableOpacity style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.title}>{item.name}</Text>
   </TouchableOpacity>
 );
 
 export default function Select() {
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -46,8 +25,8 @@ export default function Select() {
 
       <View style={styles.flatlistcontainer}>
         <FlatList
-          data={dummydata}
-          renderItem={({item}) => <Item title={item.title} />}
+          data={CardList}
+          renderItem={Selectables}
           keyExtractor={item => item.id}
         />
       </View>
@@ -80,15 +59,15 @@ const styles = StyleSheet.create({
   },
   flatlistcontainer:{
     marginTop: 25,
+    marginBottom:40,
     width: '100%',
-    height: 'auto',
+    height:'auto',
   },
   item:{
     backgroundColor: 'lightgray',
     height: 50,
     margin: 5,
     justifyContent: 'center',
-    paddingLeft: 10,
-    paddingRight: 10
+    padding:10,
   },
 });

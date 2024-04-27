@@ -1,5 +1,10 @@
 export var CardList=[
     {
+        name:'My Deck',
+        content:
+        []
+    },
+    {
         name:'Want',
         content:  
         [ 
@@ -645,5 +650,3 @@ export var CardList=[
         ]
     }
 ]
-
-var OwnDeck

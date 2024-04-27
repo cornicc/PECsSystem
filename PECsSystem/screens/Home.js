@@ -5,20 +5,21 @@ import { useState } from 'react';
 
 
 export default function Home({navigation}) {
+  [selectedDeck,setDeck]=useState(CardList[0].content)
+  const [searchInputVisible, setSearchInputVisible] = useState(false);
+
   const renderItem =({item})=>(
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onLongPress={()=>{alert('ffff')}}>
       <Text>{item.name}</Text>
       <Text>{item.category}</Text>
-    </View>
+    </TouchableOpacity>
   );
   const rendercategory =({item})=>(
-    <TouchableOpacity style={styles.categorybtn}>
+    <TouchableOpacity style={styles.categorybtn} onPress={()=>{setDeck(item.content)}}>
       <Text>{item.name}</Text>
     </TouchableOpacity>
   );
   
-  const [searchInputVisible, setSearchInputVisible] = useState(false);
-
 //style={styles.selectedcards}//
   return (
     <View style={styles.container}>
@@ -30,22 +31,22 @@ export default function Home({navigation}) {
         
 
 
-      <View style={{flexDirection:'row', marginTop: 50,}}> 
-          <View style={styles.selectcontainer} />
-          <View style={styles.selectcontainer} />
-          <View style={styles.selectcontainer} />
-      </View>
+        <View style={{flexDirection:'row', marginTop: 50,}}> 
+            <View style={styles.selectcontainer} />
+            <View style={styles.selectcontainer} />
+            <View style={styles.selectcontainer} />
+        </View>
 
 
-      <View style={{width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop:15}}>
-        <TouchableOpacity style={styles.trashbtn}>
-          <Text>T</Text>
-        </TouchableOpacity>
+        <View style={{width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop:15}}>
+          <TouchableOpacity style={styles.trashbtn}>
+            <Text>T</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.playbtn}>
-          <Text>Play</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity style={styles.playbtn}>
+            <Text>Play</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       
 
@@ -79,7 +80,7 @@ export default function Home({navigation}) {
           <FlatList
             bounces={false}
             horizontal={false}
-            data={CardList[0].content}
+            data={selectedDeck}
             renderItem={renderItem}
             numColumns={3}
           />

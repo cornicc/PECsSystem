@@ -8,9 +8,8 @@ export default function Splash({navigation}){
 
     const storeData = async(value) => {
       try {
-        alert('d');
-        await AsyncStorage.setItem('skipTutorial',JSON.stringify(false))
-        if(skip){
+        await AsyncStorage.setItem('skipTutorial',JSON.stringify(value))
+        if(skip==true){
           navigation.navigate('Drawer',{screen:'Home'})
         }
         else{
@@ -26,7 +25,7 @@ export default function Splash({navigation}){
         const value = await AsyncStorage.getItem('skipTutorial');
         const truevalue = JSON.parse(value)
         if (value !== null) {
-          alert(truevalue);
+          alert("Current skip data is "+truevalue);
           setskip(truevalue)
         }
       } catch (e) {

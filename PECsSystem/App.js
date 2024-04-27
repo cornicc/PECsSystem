@@ -19,12 +19,12 @@ const Drawer=createDrawerNavigator();
 const DrawerNav=()=>{
   return(
       <Drawer.Navigator>
-        <Drawer.Screen name="Tutorial" component={Tutorial} options={{headerShown: true}}/>
+        <Drawer.Screen name="Tutorial" component={Tutorial} options={{headerShown: true,drawerItemStyle:{display:"none"}}}/>
         <Drawer.Screen name="Home" component={Home} options={{headerShown:false}}/>
         <Drawer.Screen name="Select" component={Select}/>
         <Drawer.Screen name="EditDeck" component={EditDeck}/>
-        <Drawer.Screen name="EditCard" component={EditCard}/>
-        <Drawer.Screen name="AddVoice" component={AddVoice}/>
+        <Drawer.Screen name="EditCard" component={EditCard} options={{drawerItemStyle:{display:"none"}}}/>
+        <Drawer.Screen name="AddVoice" component={AddVoice} options={{drawerItemStyle:{display:"none"}}}/>
       </Drawer.Navigator>
   )
 }
