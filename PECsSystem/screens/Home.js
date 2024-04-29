@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View , FlatList, TouchableWithoutFeedback, TouchableOpacity, Modal, SafeAreaView, Button, TextInput} from 'react-native';
+import { StyleSheet, Text, View , FlatList, TouchableWithoutFeedback, TouchableOpacity, Modal, SafeAreaView, Button, TextInput, Image} from 'react-native';
 import { CardList } from '../data/CardData';
 import { useState } from 'react';
 
@@ -28,10 +28,8 @@ export default function Home({navigation}) {
         <TouchableOpacity onPress={()=>{navigation.openDrawer()}} style={styles.menu}>
           <Text style={{alignSelf: 'center'}}>Menu</Text>
         </TouchableOpacity>
-        
 
-
-        <View style={{flexDirection:'row', marginTop: 50,}}> 
+        <View style={{flexDirection:'row', marginTop: 50,}}>
             <View style={styles.selectcontainer} />
             <View style={styles.selectcontainer} />
             <View style={styles.selectcontainer} />

@@ -6,7 +6,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
-export default function Create() {
+export default function AddCard() {
   const [text, setText] = useState('');
   return (
     <View style={styles.container}>
