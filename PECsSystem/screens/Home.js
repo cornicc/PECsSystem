@@ -5,20 +5,35 @@ import { useState } from 'react';
 
 
 export default function Home({navigation}) {
-  [selectedDeck,setDeck]=useState(CardList[0].content)
+  const [selectedDeck,setDeck]=useState(CardList[1].content)
+  const [playDeck,setPlayDeck]=useState([])
   const [searchInputVisible, setSearchInputVisible] = useState(false);
 
   const renderItem =({item})=>(
-    <TouchableOpacity style={styles.card} onLongPress={()=>{alert('ffff')}}>
+    <TouchableOpacity style={styles.card} onLongPress={()=>{alert('ffff')}} onPress={()=>{addToPlayDeck(item)}}>
+      <Image source={item.image} style={styles.cardPicture}></Image>
       <Text>{item.name}</Text>
-      <Text>{item.category}</Text>
     </TouchableOpacity>
   );
-  const rendercategory =({item})=>(
+  const renderCategory =({item})=>(
     <TouchableOpacity style={styles.categorybtn} onPress={()=>{setDeck(item.content)}}>
       <Text>{item.name}</Text>
     </TouchableOpacity>
   );
+  const renderSelected=({item})=>(
+    <View style={styles.selectcontainer}>
+      <Image source={item.image} style={styles.cardPicture}></Image>
+      <Text>{item.name}</Text>
+    </View>
+  )
+
+  const addToPlayDeck=(item)=>{
+    setPlayDeck([...playDeck,item])
+  }
+
+  const clearPlayDeck=()=>{
+    setPlayDeck([])
+  }
   
 //style={styles.selectedcards}//
   return (
@@ -30,15 +45,18 @@ export default function Home({navigation}) {
         </TouchableOpacity>
 
         <View style={{flexDirection:'row', marginTop: 50,}}>
-            <View style={styles.selectcontainer} />
-            <View style={styles.selectcontainer} />
-            <View style={styles.selectcontainer} />
+            <FlatList
+              bounces={false}
+              horizontal={true}
+              data={playDeck}
+              renderItem={renderSelected}
+            />
         </View>
 
 
         <View style={{width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop:15}}>
-          <TouchableOpacity style={styles.trashbtn}>
-            <Text>T</Text>
+          <TouchableOpacity style={styles.trashbtn} onPress={()=>{clearPlayDeck()}}>
+            <Text>Clear</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.playbtn}>
@@ -54,7 +72,7 @@ export default function Home({navigation}) {
                 bounces={false}
                 horizontal={true}
                 data={CardList}
-                renderItem={rendercategory}
+                renderItem={renderCategory}
                 style={styles.categoryBTNcontainer}
               />
               <TouchableOpacity style={styles.searchbtn} onPress={() => setSearchInputVisible(!searchInputVisible)}>
@@ -213,5 +231,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  cardPicture:{
+    height:'85%',
+    width:'85%'
   }
 });
