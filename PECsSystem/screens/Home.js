@@ -3,12 +3,13 @@ import { StyleSheet, Text, View , FlatList, TouchableWithoutFeedback, TouchableO
 import { CardList } from '../data/CardData';
 import { useState,useEffect } from 'react';
 import { Audio } from 'expo-av';
+import { _DEFAULT_INITIAL_PLAYBACK_STATUS, _DEFAULT_PROGRESS_UPDATE_INTERVAL_MILLIS } from 'expo-av/build/AV';
 
 export default function Home({navigation}) {
   const [selectedDeck,setDeck]=useState(CardList[1].content)
   const [playDeck,setPlayDeck]=useState([])
   const [searchInputVisible, setSearchInputVisible] = useState(false);
-  const [audio, setAudio]=useState()
+  const [audio, setAudio]=useState([])
 
   const renderItem =({item})=>(
     <TouchableOpacity style={styles.card} onLongPress={()=>{alert('ffff')}} onPress={()=>{addToPlayDeck(item)}}>
@@ -37,7 +38,12 @@ export default function Home({navigation}) {
   const playAudio=async()=>{
     for(x=0;x<playDeck.length;x++){
       const { sound } = await Audio.Sound.createAsync(playDeck[x].audio);
-      await sound.playAsync()
+      setTimeout(async()=>{await sound.playAsync()},1000)
+      sound.setOnPlaybackStatusUpdate((status)=>{
+        if (status.didJustFinish){
+          sound.unloadAsync()
+        }
+      })
     }
   }
 
