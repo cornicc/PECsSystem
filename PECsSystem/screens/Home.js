@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View , FlatList, TouchableWithoutFeedback, TouchableOpacity, Modal, SafeAreaView, Button, TextInput, Image} from 'react-native';
 import { CardList } from '../data/CardData';
-import { useState } from 'react';
-
+import { useState,useEffect } from 'react';
+import { Audio } from 'expo-av';
 
 export default function Home({navigation}) {
   const [selectedDeck,setDeck]=useState(CardList[1].content)
   const [playDeck,setPlayDeck]=useState([])
   const [searchInputVisible, setSearchInputVisible] = useState(false);
+  const [audio, setAudio]=useState()
 
   const renderItem =({item})=>(
     <TouchableOpacity style={styles.card} onLongPress={()=>{alert('ffff')}} onPress={()=>{addToPlayDeck(item)}}>
@@ -30,11 +31,16 @@ export default function Home({navigation}) {
   const addToPlayDeck=(item)=>{
     setPlayDeck([...playDeck,item])
   }
-
   const clearPlayDeck=()=>{
     setPlayDeck([])
   }
-  
+  const playAudio=async()=>{
+    for(x=0;x<playDeck.length;x++){
+      const { sound } = await Audio.Sound.createAsync(playDeck[x].audio);
+      await sound.playAsync()
+    }
+  }
+
 //style={styles.selectedcards}//
   return (
     <View style={styles.container}>
@@ -59,7 +65,7 @@ export default function Home({navigation}) {
             <Text>Clear</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.playbtn}>
+          <TouchableOpacity style={styles.playbtn} onPress={()=>{playAudio()}}>
             <Text>Play</Text>
           </TouchableOpacity>
         </View>
