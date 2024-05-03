@@ -8,7 +8,6 @@ const windowHeight = Dimensions.get('window').height;
 
 
 export default function AddVoice() {
-  const [text, setText] = useState('');
   const [progress, setProgress] = useState(1.0);
   const [timer, setTimer] = useState(null);
   const [isRecording, setIsRecording] =useState(false)
@@ -62,20 +61,6 @@ export default function AddVoice() {
       </View>
       
       <View>
-        <View style={styles.cardcontainer}>
-          <TouchableOpacity style={styles.addimagebtn}>
-            <Text>
-              +
-            </Text>
-          </TouchableOpacity>
-          <TextInput
-            style={styles.input}
-            onChangeText={setText}
-            value={text}
-            placeholder="INSERT TEXT"
-          />
-        </View>
-
         <View style={styles.btncontainer}>
         {/* Progress bar */}
         {isRecording && (
@@ -92,8 +77,6 @@ export default function AddVoice() {
             <Text>{isReadyToPlay ? 'Play' : isRecording ? 'Stop' : 'Record'}</Text>
         </TouchableOpacity>
         </View>
-
-
       </View>  
     </View>
   );
