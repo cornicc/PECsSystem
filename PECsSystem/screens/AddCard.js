@@ -9,6 +9,7 @@ const windowHeight = Dimensions.get('window').height;
 
 export default function AddCard({navigation}) {
   const [text, setText] = useState('');
+  const [audioUrl, setAudioUrl]=useState('')
 
   const saveCard=async()=>{
     try {
