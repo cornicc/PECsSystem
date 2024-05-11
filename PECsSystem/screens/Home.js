@@ -10,7 +10,7 @@ export default function Home({navigation}) {
   const [searchInputVisible, setSearchInputVisible] = useState(false);
 
   const renderItem =({item})=>(
-    <TouchableOpacity style={styles.card} onLongPress={()=>{alert('ffff')}} onPress={()=>{addToPlayDeck(item)}}>
+    <TouchableOpacity style={[styles.card, styles.shading]} onLongPress={()=>{alert('ffff')}} onPress={()=>{addToPlayDeck(item)}}>
       <Image source={item.image} style={styles.cardPicture}></Image>
       <Text>{item.name}</Text>
     </TouchableOpacity>
@@ -21,7 +21,7 @@ export default function Home({navigation}) {
     </TouchableOpacity>
   );
   const renderSelected=({item})=>(
-    <View style={styles.selectcontainer}>
+    <View style={[styles.selectcontainer, styles.shading]}>
       <Image source={item.image} style={styles.cardPicture}></Image>
       <Text>{item.name}</Text>
     </View>
@@ -39,12 +39,12 @@ export default function Home({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>DECKS || ALL</Text>
+        <Text style={{color: '#FFC145', fontSize: 20}}>DECKS | ALL</Text>
         <TouchableOpacity onPress={()=>{navigation.openDrawer()}} style={styles.menu}>
           <Text style={{alignSelf: 'center'}}>Menu</Text>
         </TouchableOpacity>
 
-        <View style={{flexDirection:'row', marginTop: 50,}}>
+        <View style={{flexDirection:'row', marginTop: 50, marginLeft: 28}}>
             <FlatList
               bounces={false}
               horizontal={true}
@@ -55,11 +55,11 @@ export default function Home({navigation}) {
 
 
         <View style={{width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop:15}}>
-          <TouchableOpacity style={styles.trashbtn} onPress={()=>{clearPlayDeck()}}>
+          <TouchableOpacity style={[styles.trashbtn, styles.shading]} onPress={()=>{clearPlayDeck()}}>
             <Text>Clear</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.playbtn}>
+          <TouchableOpacity style={[styles.playbtn, styles.shading]}>
             <Text>Play</Text>
           </TouchableOpacity>
         </View>
@@ -110,15 +110,15 @@ export default function Home({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: '#5B5F97',
     alignItems: 'center',
 
   },
   header:{
     width: '100%',
     height: '40%',
-    marginTop: '7%',
-    backgroundColor: 'gray',
+    marginTop: 50,
+    backgroundColor: '#5B5F97',
     alignItems: 'center'
   },
   optioncontainer:{
@@ -126,15 +126,17 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '60%',
     alignItems: 'center',
+    paddingBottom: 60,
     borderRadius: 16,
   },
   selectcontainer:{
-    borderWidth: 1,
     width:100,
     height:125,
     margin: 5,
     borderRadius: 12,
-    backgroundColor: 'white'
+    padding:7,
+    backgroundColor: 'white',
+    alignItems: 'center',
   },
   card:{
     alignItems: 'center',
@@ -145,6 +147,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',
     borderWidth: 1,
     borderRadius: 12,
+    borderColor: '#B8B8D1',
     padding: 5,
   },
   menu: {
@@ -157,49 +160,59 @@ const styles = StyleSheet.create({
     right: 10,
     alignSelf: 'flex-start'
   },
+
   trashbtn:{
    justifyContent: 'center',
    alignItems: 'center',
+   backgroundColor: '#5B5F97',
    width: 60,
    height: 60,
+   borderRadius: 30,
    marginEnd: 10,
-   backgroundColor: 'lightgray'
+   borderColor: '#FFC145',
+   borderWidth: 3,
+   
   },
   playbtn: {
-    backgroundColor: 'lightblue',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#5B5F97',
     width: 200,
     height: 60,
+    borderColor: '#FFC145',
+    borderWidth: 3,
+    borderRadius: 90,
   },
   categorycontainer:{
     width: '100%',
     marginTop: 20,
+    marginBottom: 20,
     height: 70,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
+    borderColor: '#B8B8D1',
   },
   categorybtn:{
     height: 50,
     width: 50,
     marginLeft: 20,
-    backgroundColor: 'lightgray',
+    backgroundColor: '#FF6B6C',
     alignSelf: 'center',
     borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center'
   },
   categoryBTNcontainer:{
-    backgroundColor: 'blue',
-    width: '80%',
+    backgroundColor: 'white',
+    width: '81.5%',
     left: 0,
     position: 'absolute',
-    height: '100%'
+    height: '100%',
   },
   searchbtn:{
-    backgroundColor: 'red',
-    width: '20%',
+    backgroundColor: '#5B5F97',
+    width: '18%',
     right:0,
     position: 'absolute',
     height: '100%',
@@ -232,6 +245,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+
+  shading:{
+    shadowColor: '#000000',
+    shadowOffset: {width: 100, height: 125},
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    elevation: 5
+  },
+
   cardPicture:{
     height:'85%',
     width:'85%'
