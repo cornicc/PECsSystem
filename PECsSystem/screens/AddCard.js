@@ -1,13 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Dimensions, TextInput} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CardList } from '../data/CardData';
+import { fromAddVoiceUrl } from '../data/miscellaneous';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
-export default function AddCard() {
+export default function AddCard({navigation}) {
   const [text, setText] = useState('');
+  const [audioUrl, setAudioUrl]=useState()
+
+  const saveCard=async()=>{
+    setAudioUrl(fromAddVoiceUrl)
+    try {
+      myDeck=CardList[0].content
+      if(myDeck==null){
+        newCard={
+          name:text,
+          audio:{uri:audioUrl},
+        }
+        myDeck=[newCard]
+      }
+      else{
+        newCard={
+          name:text,
+          audio:{uri:audioUrl},
+        }
+        myDeck.unshift(newCard)
+      }
+
+      await AsyncStorage.setItem('myDeckContent',JSON.stringify(myDeck))
+
+    } catch (e) {
+      alert(e);
+    } 
+  }
+
+  const addVoice=()=>{
+    navigation.navigate('AddVoice')
+  }
+ 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -37,7 +71,7 @@ export default function AddCard() {
         </View>
 
         <View style={styles.btncontainer}>
-        <TouchableOpacity style={styles.addbtns}>
+        <TouchableOpacity style={styles.addbtns} onPress={()=>{addVoice()}}>
           <Text>
             ADD VOICE
           </Text>
@@ -47,14 +81,12 @@ export default function AddCard() {
             ADD SECOND IMAGE
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.addbtns}>
+        <TouchableOpacity style={styles.addbtns}  onPress={()=>{saveCard()}}>
           <Text>
             SAVE
           </Text>
         </TouchableOpacity>
         </View>
-
-
       </View>  
     </View>
   );
