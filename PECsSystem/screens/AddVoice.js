@@ -9,7 +9,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
-export default function AddVoice() {
+export default function AddVoice({navigation}) {
   const [progress, setProgress] = useState(1.0);
   const [timer, setTimer] = useState(null);
   const [isRecording, setIsRecording] =useState(false)
@@ -17,6 +17,7 @@ export default function AddVoice() {
   const [recordingDuration, setRecordingDuration] = useState(0);
   const [recording, setRecording] = useState();
   const [recordedItem, setRecordedItem] = useState([]);
+  const [doneRecording,setDoneRecording]= useState(false);
 
   const getDurationFormatted=(millis)=>  {
     const minutes = millis / 1000 / 60;
@@ -25,6 +26,7 @@ export default function AddVoice() {
   }
 
   const startRecording = async() => {
+    changeAddVoiceUrl(null);
     setRecordingDuration(0)
     setIsRecording(true);
     setIsReadyToPlay(false);
@@ -82,6 +84,7 @@ export default function AddVoice() {
           // Add new recording to recordings list and reset recording duration
           setRecordedItem(newRecording)
           setRecordingDuration(0);
+          setDoneRecording(true)
         } catch (err) {
           setRecording(undefined);
           console.error('Failed to stop recording:', err);
@@ -92,6 +95,11 @@ export default function AddVoice() {
     setIsReadyToPlay(false);
     await recordedItem.sound.replayAsync()
   };
+
+  const saveVoice=()=>{
+    navigation.navigate("AddCard");
+    setDoneRecording(false)
+  }
 
   useEffect(() => {
     let timer;
@@ -139,6 +147,12 @@ export default function AddVoice() {
         <TouchableOpacity style={styles.addbtns} onPress={isReadyToPlay ? startPlaying : isRecording ? stopRecording : startRecording}>
             <Text>{isReadyToPlay ? 'Play' : isRecording ? 'Stop' : 'Record'}</Text>
         </TouchableOpacity>
+        {doneRecording?(
+          <TouchableOpacity style={styles.addbtns} onPress={()=>{saveVoice()}}>
+            <Text>{'Save'}</Text>
+        </TouchableOpacity>
+        ):null}
+        
         </View>
       </View>  
     </View>

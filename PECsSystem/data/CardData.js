@@ -1,7 +1,7 @@
 export var CardList=[
     {
         name:'My Deck',
-        content:[]
+        content:null
     },
     {
         name:'Want',
