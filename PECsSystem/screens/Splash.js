@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View ,TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CardList } from '../data/CardData';
 
 export default function Splash({navigation}){
     const [skip,setskip]=useState();
