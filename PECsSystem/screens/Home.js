@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View , FlatList, TouchableWithoutFeedback, TouchableOpacity, Modal, SafeAreaView, Button, TextInput, Image} from 'react-native';
 import { CardList } from '../data/CardData';
-import { useState } from 'react';
-
+import { useState,useEffect } from 'react';
+import { Audio } from 'expo-av';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Home({navigation}) {
   const [selectedDeck,setDeck]=useState(CardList[1].content)
   const [playDeck,setPlayDeck]=useState([])
   const [searchInputVisible, setSearchInputVisible] = useState(false);
-
+  
+ 
   const renderItem =({item})=>(
     <TouchableOpacity style={[styles.card, styles.shading]} onLongPress={()=>{alert('ffff')}} onPress={()=>{addToPlayDeck(item)}}>
       <Image source={item.image} style={styles.cardPicture}></Image>
@@ -30,10 +32,48 @@ export default function Home({navigation}) {
   const addToPlayDeck=(item)=>{
     setPlayDeck([...playDeck,item])
   }
-
   const clearPlayDeck=()=>{
     setPlayDeck([])
   }
+  async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  const loadAudio=async()=>{
+    for(let x=0;x<playDeck.length;x++){
+      try{
+         const { sound } = await Audio.Sound.createAsync(playDeck[x].audio);
+      const newAudio={
+        sound:sound
+      }
+      await sound.playAsync()
+      sound.setOnPlaybackStatusUpdate((status)=>{
+        if (status.didJustFinish){
+          sound.unloadAsync()
+        }
+      })
+      await sleep(1000)
+      }
+      catch(e){
+        alert("Missing an audio for this card")
+      }
+    }
+  }
+
+  const getContentData=async()=>{
+    try {
+      const value = await AsyncStorage.getItem('myDeckContent');
+      const truevalue = JSON.parse(value)
+
+      CardList[0].content=truevalue
+    } catch (e) {
+      alert(e)
+    }
+  }
+
+  useEffect(()=>{
+    getContentData();
+  },[])
   
 //style={styles.selectedcards}//
   return (
@@ -53,13 +93,12 @@ export default function Home({navigation}) {
             />
         </View>
 
-
         <View style={{width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop:15}}>
           <TouchableOpacity style={[styles.trashbtn, styles.shading]} onPress={()=>{clearPlayDeck()}}>
             <Text>Clear</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.playbtn, styles.shading]}>
+          <TouchableOpacity style={[styles.playbtn, styles.shading]} onPress={()=>{loadAudio()}}>
             <Text>Play</Text>
           </TouchableOpacity>
         </View>

@@ -26,7 +26,7 @@ const DrawerNav=()=>{
         <Drawer.Screen name="Select" component={Select}/>
         <Drawer.Screen name="EditDeck" component={EditDeck}/>
         <Drawer.Screen name="EditCard" component={EditCard} options={{drawerItemStyle:{display:"none"}}}/>
-        <Drawer.Screen name="AddCard" component={AddCard} options={{drawerItemStyle:{display:"none"}}}/>
+        <Drawer.Screen name="AddCard" component={AddCard}/>
         <Drawer.Screen name="AddVoice" component={AddVoice} options={{drawerItemStyle:{display:"none"}}}/>
       </Drawer.Navigator>
   )

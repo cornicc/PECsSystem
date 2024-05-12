@@ -52,6 +52,11 @@ export default function Create() {
             SAVE
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.addbtns}>
+          <Text>
+            DELETE
+          </Text>
+        </TouchableOpacity>
         </View>
 
 
