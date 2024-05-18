@@ -3,6 +3,7 @@ import { StyleSheet, Text, View , FlatList, TouchableWithoutFeedback, TouchableO
 import { CardList } from '../data/CardData';
 import { useState,useEffect } from 'react';
 import { Audio } from 'expo-av';
+import Ionicons from '@expo/vector-icons/Ionicons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Home({navigation}) {
@@ -19,7 +20,7 @@ export default function Home({navigation}) {
   );
   const renderCategory =({item})=>(
     <TouchableOpacity style={styles.categorybtn} onPress={()=>{setDeck(item.content)}}>
-      <Text>{item.name}</Text>
+      <Text style={{color:'white'}}>{item.name}</Text>
     </TouchableOpacity>
   );
   const renderSelected=({item})=>(
@@ -81,7 +82,7 @@ export default function Home({navigation}) {
       <View style={styles.header}>
         <Text style={{color: '#FFC145', fontSize: 20}}>DECKS | ALL</Text>
         <TouchableOpacity onPress={()=>{navigation.openDrawer()}} style={styles.menu}>
-          <Text style={{alignSelf: 'center'}}>Menu</Text>
+          <Ionicons name="menu" size={32} color="#FFC145"/>
         </TouchableOpacity>
 
         <View style={{flexDirection:'row', marginTop: 50, marginLeft: 28}}>
@@ -95,11 +96,11 @@ export default function Home({navigation}) {
 
         <View style={{width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop:15}}>
           <TouchableOpacity style={[styles.trashbtn, styles.shading]} onPress={()=>{clearPlayDeck()}}>
-            <Text>Clear</Text>
+            <Ionicons name="trash" size={20} color='#FFC145'/>
           </TouchableOpacity>
 
           <TouchableOpacity style={[styles.playbtn, styles.shading]} onPress={()=>{loadAudio()}}>
-            <Text>Play</Text>
+            <Ionicons name="play" size={20} color='#FFC145'/>
           </TouchableOpacity>
         </View>
       </View>
@@ -115,18 +116,14 @@ export default function Home({navigation}) {
                 style={styles.categoryBTNcontainer}
               />
               <TouchableOpacity style={styles.searchbtn} onPress={() => setSearchInputVisible(!searchInputVisible)}>
-                <Text>
-                  Search
-                </Text>
+                <Ionicons name='search' size={30} color='#FFC145'/>
               </TouchableOpacity>
               {searchInputVisible &&(
                 <>
                 <TextInput placeholder="Search" style={styles.searchinput}/>
                 <View style={styles.searchcancelbtnbackground} >
                   <TouchableOpacity style={styles.searchcancelbtn} onPress={()=>setSearchInputVisible(false)}>
-                    <Text>
-                      X
-                    </Text>
+                    <Ionicons name="close" size={30} color='#FFC145'/>
                   </TouchableOpacity>
                 </View>
                 </>
@@ -180,7 +177,7 @@ const styles = StyleSheet.create({
   card:{
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height:125,
+    height:130,
     width:100,
     margin: 5,
     backgroundColor:'#fff',
@@ -194,9 +191,9 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     height: 50,
     width: 50,
-    backgroundColor: 'lightgray',
+    borderRadius: 30,
     position: 'absolute',
-    right: 10,
+    right: 5,
     alignSelf: 'flex-start'
   },
 
@@ -218,9 +215,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#5B5F97',
     width: 200,
     height: 60,
+    color: '#FFC145',
     borderColor: '#FFC145',
     borderWidth: 3,
     borderRadius: 90,
+    color:'#FFC145',
   },
   categorycontainer:{
     width: '100%',
@@ -234,7 +233,9 @@ const styles = StyleSheet.create({
   },
   categorybtn:{
     height: 50,
-    width: 50,
+    width: 'auto',
+    paddingLeft: 20,
+    paddingRight: 20,
     marginLeft: 20,
     backgroundColor: '#FF6B6C',
     alignSelf: 'center',
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 50,
-    backgroundColor: 'gray',
+    backgroundColor: '#FF6B6C',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -294,7 +295,7 @@ const styles = StyleSheet.create({
   },
 
   cardPicture:{
-    height:'85%',
+    height:'70%',
     width:'85%'
   }
 });

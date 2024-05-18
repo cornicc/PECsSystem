@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -20,13 +20,22 @@ const Drawer=createDrawerNavigator();
 
 const DrawerNav=()=>{
   return(
-      <Drawer.Navigator>
+      <Drawer.Navigator screenOptions={{
+           drawerInactiveBackgroundColor:'#5B5F97',
+           drawerActiveBackgroundColor:'#FF6B6C',
+           drawerLabelStyle:{
+               fontSize: 20,
+               color: 'white',
+               textAlign:'center',
+               marginLeft: 30
+           },
+      }}>
         <Drawer.Screen name="Tutorial" component={Tutorial} options={{headerShown: true,drawerItemStyle:{display:"none"}}}/>
         <Drawer.Screen name="Home" component={Home} options={{headerShown:false}}/>
         <Drawer.Screen name="Select" component={Select}/>
-        <Drawer.Screen name="EditDeck" component={EditDeck}/>
+        <Drawer.Screen name="Edit Deck" component={EditDeck}/>
         <Drawer.Screen name="EditCard" component={EditCard} options={{drawerItemStyle:{display:"none"}}}/>
-        <Drawer.Screen name="AddCard" component={AddCard}/>
+        <Drawer.Screen name="Add Card" component={AddCard}/>
         <Drawer.Screen name="AddVoice" component={AddVoice} options={{drawerItemStyle:{display:"none"}}}/>
       </Drawer.Navigator>
   )
